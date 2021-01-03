@@ -1,11 +1,11 @@
-package site.thewhale.memories.fragments.objects;
+package site.thewhale.memories.objects;
 
 import java.io.Serializable;
 
 public class Post implements Serializable {
     //attributes
     private String ID;
-    private int img;
+    private String img;
     private String username;
     private int likes;
     private String comment;
@@ -14,7 +14,7 @@ public class Post implements Serializable {
         return ID;
     }
 
-    public Post(String ID, int img, String username, int likes, String comment) {
+    public Post(String ID, String img, String username, int likes, String comment) {
         this.ID = ID;
         this.img = img;
         this.username = username;
@@ -26,11 +26,11 @@ public class Post implements Serializable {
         this.ID = ID;
     }
 
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

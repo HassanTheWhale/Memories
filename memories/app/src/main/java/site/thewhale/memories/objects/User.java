@@ -1,11 +1,11 @@
-package site.thewhale.memories.fragments.objects;
+package site.thewhale.memories.objects;
 
 import java.io.Serializable;
 
 public class User implements Serializable {
 
     private String username;
-    private int img;
+    private int img ;
     private String email;
     private String name;
     private String password;
@@ -16,6 +16,7 @@ public class User implements Serializable {
         this.name = name;
         this.password = password;
     }
+
     public User(String username, int img, String email, String name, String password) {
         this.username = username;
         this.img = img;

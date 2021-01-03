@@ -7,8 +7,8 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
+import com.mikepenz.materialize.color.Material;
 
-import site.thewhale.memories.adapters.LoginAdapter;
 import site.thewhale.memories.adapters.MainAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
         tl.setupWithViewPager(viewPager);
 
-        tl.getTabAt(0).setIcon(R.drawable.ic_baseline_star_24);
+        tl.getTabAt(0).setIcon(R.drawable.home);
+        tl.getTabAt(1).setIcon(R.drawable.loupe);
+        tl.getTabAt(2).setIcon(R.drawable.user);
     }
 }

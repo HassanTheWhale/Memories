@@ -41,16 +41,35 @@
         android:layout_below="@+id/sLogan"
         android:layout_marginTop="100dp"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <com.bitvale.lightprogress.LightProgress
-            android:id="@+id/light"
+        <TextView
+            android:id="@+id/loadingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Please wait..."
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Large.Circle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Loading Pages..."
-            android:textColor="@color/text_color"
-            android:textSize="35dp"
-            app:light_color="@color/light_color" />
+            android:layout_gravity="center"
+            app:SpinKit_Color="#000" />
+
+        <!--        <com.bitvale.lightprogress.LightProgress-->
+        <!--            android:id="@+id/light"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Loading Pages..."-->
+        <!--            android:textColor="@color/text_color"-->
+        <!--            android:textSize="35dp"-->
+        <!--            app:light_color="@color/light_color" />-->
+
+
     </LinearLayout>
 
     <TextView

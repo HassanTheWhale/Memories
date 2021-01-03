@@ -17,7 +17,7 @@ public class ZeroPointActivity extends AppCompatActivity {
         setContentView(R.layout.activity_zero_point);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        Intent i = new Intent(ZeroPointActivity.this, MainActivity.class);
+        Intent i = new Intent(ZeroPointActivity.this, LoadingActivity.class);
         startActivity(i);
         finish();
     }

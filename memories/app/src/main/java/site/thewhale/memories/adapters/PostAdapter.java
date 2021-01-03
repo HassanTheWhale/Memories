@@ -2,6 +2,7 @@ package site.thewhale.memories.adapters;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import site.thewhale.memories.R;
-import site.thewhale.memories.fragments.objects.Post;
+import site.thewhale.memories.objects.Post;
 
 public class PostAdapter extends RecyclerView.Adapter {
 
@@ -36,11 +39,12 @@ public class PostAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
         ((ViewHolder) holder).comment.setText(postsList.get(position).getComment());
         ((ViewHolder) holder).likes.setText(String.valueOf(postsList.get(position).getLikes()));
         ((ViewHolder) holder).username.setText(postsList.get(position).getUsername());
-        ((ViewHolder) holder).img.setImageResource(postsList.get(position).getImg());
+//        ((ViewHolder) holder).img.setImageResource(R.drawable.heart);
+        Picasso.with(contect).load(postsList.get(position).getImg()).into((((ViewHolder) holder).img));
     }
 
     @Override

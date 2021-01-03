@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import site.thewhale.memories.MainActivity;
 import site.thewhale.memories.R;
 
 public class RegisterFragment extends Fragment {
