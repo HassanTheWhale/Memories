@@ -26,8 +26,8 @@ public class RegisterFragment extends Fragment {
 
         ViewPager vp = (ViewPager) getActivity().findViewById(R.id.loginViewPager);
 
-        TextView signUp = view.findViewById(R.id.loginFragmentBtn);
-        signUp.setOnClickListener(new View.OnClickListener() {
+        TextView login = view.findViewById(R.id.loginFragmentBtn);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 vp.setCurrentItem(0, true);

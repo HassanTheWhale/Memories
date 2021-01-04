@@ -17,6 +17,17 @@
         android:hint="Email"
         android:inputType="textEmailAddress" />
 
+    <TextView
+        android:id="@+id/loginFragmentBtn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="50dp"
+        android:text="wanna login instead? click here!" />
+
+
+
     <Button
         android:id="@+id/ForgetBtn"
         android:layout_width="match_parent"
