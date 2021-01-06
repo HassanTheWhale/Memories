@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "435666327782",
+    "project_id": "memories-b188b",
+    "storage_bucket": "memories-b188b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435666327782:android:25e3a5602b1488ef6d8327",
+        "android_client_info": {
+          "package_name": "site.thewhale.memories"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435666327782-eqsc9obdinkq6v2ns4t2qnp8u4ug583r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdlFDp89KK3HKPQj2v6BFXEn74QPQMp04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435666327782-eqsc9obdinkq6v2ns4t2qnp8u4ug583r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

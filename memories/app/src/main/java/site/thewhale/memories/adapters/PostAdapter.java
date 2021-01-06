@@ -40,11 +40,11 @@ public class PostAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
+        Picasso.with(contect).load(postsList.get(position).getImg()).into(((ViewHolder) holder).img);
         ((ViewHolder) holder).comment.setText(postsList.get(position).getComment());
         ((ViewHolder) holder).likes.setText(String.valueOf(postsList.get(position).getLikes()));
         ((ViewHolder) holder).username.setText(postsList.get(position).getUsername());
 //        ((ViewHolder) holder).img.setImageResource(R.drawable.heart);
-        Picasso.with(contect).load(postsList.get(position).getImg()).into((((ViewHolder) holder).img));
     }
 
     @Override
