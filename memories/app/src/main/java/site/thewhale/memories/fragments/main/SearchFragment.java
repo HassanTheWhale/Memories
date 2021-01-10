@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import site.thewhale.memories.EditActivity;
 import site.thewhale.memories.MainActivity;
@@ -39,15 +40,27 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
 
+
         final RecyclerView rView = view.findViewById(R.id.searchRV);
         rView.setHasFixedSize(true);
         RecyclerView.LayoutManager lm = new LinearLayoutManager(view.getContext());
         rView.setLayoutManager(lm);
 
+        Lists.createList("users");
+
         userAdapter = new UserAdapter(Lists.getUserArrayList(), view.getContext());
         rView.setAdapter(userAdapter);
 
         final EditText user = view.findViewById(R.id.searchUser);
+
+        ImageView search = view.findViewById(R.id.searchBtn);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Lists.createList("users");
+                userAdapter.notifyDataSetChanged();
+            }
+        });
 
         user.addTextChangedListener(new TextWatcher() {
             @Override
@@ -63,6 +76,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 filter(s.toString());
+                userAdapter.notifyDataSetChanged();
             }
         });
 
@@ -76,7 +90,6 @@ public class SearchFragment extends Fragment {
                 filterUsers.add(user);
             }
         }
-
         userAdapter.filterList(filterUsers);
     }
 }
