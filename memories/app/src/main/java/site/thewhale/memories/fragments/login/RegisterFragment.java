@@ -20,7 +20,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import site.thewhale.memories.EditActivity;
 import site.thewhale.memories.LoadingActivity;
 import site.thewhale.memories.LoginActivity;
 import site.thewhale.memories.R;
@@ -56,6 +59,10 @@ public class RegisterFragment extends Fragment {
                     return;
                 }
                 if (password.getText().toString().equals(passwordConfirm.getText().toString()) && (!password.getText().toString().isEmpty() || !passwordConfirm.getText().toString().isEmpty() )) {
+                    if (password.getText().toString().length() < 8) {
+                        Toast.makeText(getActivity(), "Password must be 8 chars at least!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     ShareCodes.register(email.getText().toString(), password.getText().toString(),
                             getActivity(), name.getText().toString(),
                             username.getText().toString());
