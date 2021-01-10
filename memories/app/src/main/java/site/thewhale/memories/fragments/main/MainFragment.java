@@ -25,7 +25,6 @@ public class MainFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,6 +49,7 @@ public class MainFragment extends Fragment {
                         .setAction("Action", null).show();
             }
         });
+
         return view;
     }
 }

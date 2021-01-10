@@ -160,6 +160,7 @@ public class ShareCodes {
     public static com.mikepenz.materialdrawer.Drawer createDrawer(Activity activity) {
         ViewPager vpPager = (ViewPager) activity.findViewById(R.id.mainViewPager);
         adapterViewPager = new MainAdapter(((FragmentActivity)activity).getSupportFragmentManager());
+        
         vpPager.setAdapter(adapterViewPager);
         String name = "N/A";
         String email = "N/A";
