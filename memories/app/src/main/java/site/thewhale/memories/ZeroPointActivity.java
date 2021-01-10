@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 
+import site.thewhale.memories.fragments.login.LoginFragment;
 import site.thewhale.memories.other.Lists;
 
 public class ZeroPointActivity extends AppCompatActivity {

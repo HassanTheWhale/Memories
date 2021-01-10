@@ -5,36 +5,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/main_bg"
     tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mainToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DADADA"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/title3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="12dp"
-            android:fontFamily="casual"
-            android:text="Memories"
-            android:textAlignment="center"
-            android:textSize="30sp" />
-
-    </LinearLayout>
+        android:orientation="horizontal"/>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/mainViewPager"
         android:layout_width="match_parent"
-        android:layout_height="575dp" />
+        android:layout_height="647dp" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/mainTab"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="55dp">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

@@ -2,7 +2,6 @@ package site.thewhale.memories.adapters;
 
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +22,12 @@ public class PostAdapter extends RecyclerView.Adapter {
 
     ArrayList<Post> postsList;
     Context contect;
+    int kind = 0;
 
-    public PostAdapter(ArrayList<Post> postsList, Context contect) {
+    public PostAdapter(ArrayList<Post> postsList, Context contect, int kind) {
         this.postsList = postsList;
         this.contect = contect;
+        this.kind = kind;
     }
 
     @NonNull
@@ -40,11 +41,16 @@ public class PostAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
-        Picasso.with(contect).load(postsList.get(position).getImg()).into(((ViewHolder) holder).img);
-        ((ViewHolder) holder).comment.setText(postsList.get(position).getComment());
-        ((ViewHolder) holder).likes.setText(String.valueOf(postsList.get(position).getLikes()));
-        ((ViewHolder) holder).username.setText(postsList.get(position).getUsername());
-//        ((ViewHolder) holder).img.setImageResource(R.drawable.heart);
+        if (kind == 0) {
+            Picasso.with(contect).load(postsList.get(position).getImg()).into(((ViewHolder) holder).img);
+            ((ViewHolder) holder).comment.setText(postsList.get(position).getComment());
+            ((ViewHolder) holder).username.setText(postsList.get(position).getUsername());
+            ((ViewHolder) holder).delete.setVisibility(View.GONE);
+        } else if (kind == 1) {
+            Picasso.with(contect).load(postsList.get(position).getImg()).into(((ViewHolder) holder).img);
+            ((ViewHolder) holder).comment.setText(postsList.get(position).getComment());
+            ((ViewHolder) holder).username.setText(postsList.get(position).getUsername());
+        }
     }
 
     @Override
@@ -54,8 +60,8 @@ public class PostAdapter extends RecyclerView.Adapter {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView img;
+        public ImageView delete;
         public TextView username;
-        public TextView likes;
         public TextView comment;
         public View view;
 
@@ -64,8 +70,8 @@ public class PostAdapter extends RecyclerView.Adapter {
             view = itemView;
             img = itemView.findViewById(R.id.postPic);
             username = itemView.findViewById(R.id.postUsername);
-            likes = itemView.findViewById(R.id.postLike);
             comment = itemView.findViewById(R.id.postComment);
+            delete = itemView.findViewById(R.id.postDelete);
         }
     }
 }

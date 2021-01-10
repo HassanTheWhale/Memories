@@ -25,6 +25,9 @@ public class ForgetFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forget, container, false);
         ViewPager vp = (ViewPager) getActivity().findViewById(R.id.loginViewPager);
 
+
+
+
         TextView login = view.findViewById(R.id.loginFragmentBtn2);
         login.setOnClickListener(new View.OnClickListener() {
             @Override

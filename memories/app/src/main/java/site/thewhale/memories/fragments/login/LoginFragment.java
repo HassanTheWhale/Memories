@@ -10,11 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import site.thewhale.memories.LoginActivity;
 import site.thewhale.memories.MainActivity;
 import site.thewhale.memories.R;
+import site.thewhale.memories.other.ShareCodes;
 
 public class LoginFragment extends Fragment {
 
@@ -38,13 +41,18 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        EditText email = view.findViewById(R.id.loginEmail);
+        EditText password = view.findViewById(R.id.loginPassword);
+
         Button login = view.findViewById(R.id.loginBtn);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent((LoginActivity)getActivity(), MainActivity.class);
-                startActivity(i);
-//                (LoginActivity)getActivity().finish();
+                if (email.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
+                    Toast.makeText(getContext(), "Something is missing!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                ShareCodes.login(email.getText().toString(), password.getText().toString(), getActivity());
             }
         });
 

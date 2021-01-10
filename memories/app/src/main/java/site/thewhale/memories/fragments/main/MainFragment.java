@@ -39,7 +39,7 @@ public class MainFragment extends Fragment {
         RecyclerView.LayoutManager lm = new LinearLayoutManager(view.getContext());
         rView.setLayoutManager(lm);
 
-        PostAdapter postAdapter = new PostAdapter(Lists.getPostArrayList(), view.getContext());
+        PostAdapter postAdapter = new PostAdapter(Lists.getPostArrayList(), view.getContext(), 0);
         rView.setAdapter(postAdapter);
 
         FloatingActionButton fab = view.findViewById(R.id.uploadPic);
