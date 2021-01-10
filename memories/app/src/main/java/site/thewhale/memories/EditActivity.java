@@ -138,7 +138,6 @@ public class EditActivity extends AppCompatActivity {
         username.setText(sUsername);
         email.setText(sEmail);
 
-        System.out.println(Lists.currentUser.getImg());
         storageReference.child("images/"+Lists.currentUser.getImg()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {

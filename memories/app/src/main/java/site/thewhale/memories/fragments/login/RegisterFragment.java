@@ -27,6 +27,8 @@ import site.thewhale.memories.EditActivity;
 import site.thewhale.memories.LoadingActivity;
 import site.thewhale.memories.LoginActivity;
 import site.thewhale.memories.R;
+import site.thewhale.memories.other.KtFunctionsKt;
+import site.thewhale.memories.other.Lists;
 import site.thewhale.memories.other.ShareCodes;
 
 public class RegisterFragment extends Fragment {
@@ -50,10 +52,13 @@ public class RegisterFragment extends Fragment {
         EditText password = view.findViewById(R.id.RegisterPassword);
         EditText passwordConfirm = view.findViewById(R.id.RegisterPasswordConfirm);
 
+
         Button register = view.findViewById(R.id.RegisterBtn);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 if (name.getText().toString().isEmpty() || username.getText().toString().isEmpty() || email.getText().toString().isEmpty()) {
                     Toast.makeText(getActivity(), "Something is missing!", Toast.LENGTH_SHORT).show();
                     return;
@@ -63,6 +68,21 @@ public class RegisterFragment extends Fragment {
                         Toast.makeText(getActivity(), "Password must be 8 chars at least!", Toast.LENGTH_SHORT).show();
                         return;
                     }
+
+                    for (int i = 0; i < Lists.getUserArrayList().size(); i++) {
+                        if (Lists.getUserArrayList().get(i).getEmail().equals(email.getText().toString())) {
+                            KtFunctionsKt.motionE(getActivity(), "Error", "The email has been used before");
+                            return;
+                        }
+                    }
+
+                    for (int i = 0; i < Lists.getUserArrayList().size(); i++) {
+                        if (Lists.getUserArrayList().get(i).getUsername().equals(username.getText().toString())) {
+                            KtFunctionsKt.motionE(getActivity(), "Error", "The Username has been used before");
+                            return;
+                        }
+                    }
+
                     ShareCodes.register(email.getText().toString(), password.getText().toString(),
                             getActivity(), name.getText().toString(),
                             username.getText().toString());

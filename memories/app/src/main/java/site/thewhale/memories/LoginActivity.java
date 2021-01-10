@@ -32,31 +32,27 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         Lists.createList("users");
 
-        mAuth = FirebaseAuth.getInstance();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-
-            Query user = dbr.child("users").orderByChild("email").equalTo(currentUser.getEmail());
-            user.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot user : snapshot.getChildren()) {
-                        User setUser = user.getValue(User.class);
-                        Lists.currentUser = setUser;
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
-            Intent i = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(i);
-            finish();
-        }
+//        mAuth = FirebaseAuth.getInstance();
+//        FirebaseUser currentUser = mAuth.getCurrentUser();
+//        if (currentUser != null) {
+//            Query user = dbr.child("users").orderByChild("email").equalTo(currentUser.getEmail());
+//            user.addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    for (DataSnapshot user : snapshot.getChildren()) {
+//                        User setUser = user.getValue(User.class);
+//                        Lists.currentUser = setUser;
+//                    }
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                }
+//            });
+//
+//            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(i);
+//            finish();
+//        }
     }
 
     @Override

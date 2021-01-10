@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -48,7 +49,6 @@ public class ProfileFragment extends Fragment {
         storageReference = storage.getReference();
 
         CircleImageView img = view.findViewById(R.id.profile_image);
-
         storageReference.child("images/"+Lists.currentUser.getImg()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -60,6 +60,9 @@ public class ProfileFragment extends Fragment {
                 // Handle any errors
             }
         });
+
+        TextView name = view.findViewById(R.id.ProfileName);
+        name.setText(Lists.currentUser.getUsername());
 
         RecyclerView rView = view.findViewById(R.id.recyclerViewProfile);
         rView.setHasFixedSize(true);

@@ -38,6 +38,7 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
+import site.thewhale.memories.EditActivity;
 import site.thewhale.memories.LoginActivity;
 import site.thewhale.memories.MainActivity;
 import site.thewhale.memories.R;
@@ -156,7 +157,10 @@ public class ShareCodes {
         activity.finish();
         KtFunctionsKt.motionS(activity, "Done!", "Please re-loginً");
     }
+
+
     static MainAdapter adapterViewPager;
+
     public static com.mikepenz.materialdrawer.Drawer createDrawer(Activity activity) {
         ViewPager vpPager = (ViewPager) activity.findViewById(R.id.mainViewPager);
         adapterViewPager = new MainAdapter(((FragmentActivity)activity).getSupportFragmentManager());
@@ -215,6 +219,8 @@ public class ShareCodes {
                         if (drawerItem.getIdentifier() == 1) {
                             vpPager.setCurrentItem(0, true);
                         } else if (drawerItem.getIdentifier() == 2) {
+                            Intent i = new Intent(activity, EditActivity.class);
+                            activity.startActivity(i);
 
                         } else if (drawerItem.getIdentifier() == 3) {
                             logOut(activity);

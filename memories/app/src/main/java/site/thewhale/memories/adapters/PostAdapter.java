@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import site.thewhale.memories.R;
 import site.thewhale.memories.objects.Post;
+import site.thewhale.memories.objects.User;
 
 public class PostAdapter extends RecyclerView.Adapter {
 
@@ -56,6 +57,11 @@ public class PostAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return postsList.size();
+    }
+
+    public void filterList(ArrayList<Post> filterList) {
+        postsList = filterList;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

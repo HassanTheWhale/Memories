@@ -15,7 +15,7 @@ public class User implements Serializable {
         this.email = email;
         this.name = name;
         this.password = password;
-        this.img = "https://cdn.discordapp.com/attachments/791277667868868659/797678956614385714/default-user-image.png";
+        this.img = "a.png";
     }
 
     public User() {

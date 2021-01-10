@@ -13,10 +13,12 @@ import android.view.ViewGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import site.thewhale.memories.R;
 import site.thewhale.memories.adapters.PostAdapter;
+import site.thewhale.memories.objects.Post;
 import site.thewhale.memories.other.Lists;
 
 public class MainFragment extends Fragment {
@@ -40,6 +42,15 @@ public class MainFragment extends Fragment {
 
         PostAdapter postAdapter = new PostAdapter(Lists.getPostArrayList(), view.getContext(), 0);
         rView.setAdapter(postAdapter);
+
+        ArrayList<Post> filterUsers = new ArrayList<Post>();
+        for (Post post : Lists.getPostArrayList()) {
+            if (post.getUsername().equals(Lists.currentUser.getUsername())) {
+                filterUsers.add(post);
+            }
+        }
+
+        postAdapter.filterList(filterUsers);
 
         FloatingActionButton fab = view.findViewById(R.id.uploadPic);
         fab.setOnClickListener(new View.OnClickListener() {

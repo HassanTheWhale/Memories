@@ -26,7 +26,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profileOther_image"
         android:layout_width="96dp"
-        android:layout_height="96dp"
+        android:layout_height="109dp"
         android:layout_gravity="center"
         android:layout_marginTop="1dp"
         android:src="@drawable/profile"
@@ -51,7 +51,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewProfileOther"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:paddingBottom="50dp" />
