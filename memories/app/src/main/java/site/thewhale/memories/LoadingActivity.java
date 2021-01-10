@@ -17,6 +17,8 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
+//        LightProgress light = findViewById(R.id.light);
+//        light.on();
         ProgressBar progressBar = (ProgressBar)findViewById(R.id.spin_kit);
         Sprite doubleBounce = new DoubleBounce();
         progressBar.setIndeterminateDrawable(doubleBounce);

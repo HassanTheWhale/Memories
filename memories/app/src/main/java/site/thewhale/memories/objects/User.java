@@ -4,22 +4,37 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+    private String id;
     private String username;
-    private String img;
+    private String img ;
     private String email;
     private String name;
     private String password;
 
-    public User(String username, String email, String name, String password) {
+    public User(String id, String username, String email, String name, String password) {
         this.username = username;
         this.email = email;
         this.name = name;
         this.password = password;
-        this.img = "https://cdn.discordapp.com/attachments/791277667868868659/797678956614385714/default-user-image.png";
+        this.id = id;
+    }
+
+    public User(String id, String username, String img, String email, String name, String password) {
+        this.username = username;
+        this.img = img;
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.id = id;
     }
 
     public User() {
-
+        this.username = "UnKnown";
+        this.img = "";
+        this.email = "no@email.com";
+        this.name = "N/A";
+        this.password = "password";
+        this.id = "id";
     }
 
     public String getUsername() {

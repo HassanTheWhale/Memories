@@ -21,12 +21,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -41,14 +35,10 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import site.thewhale.memories.LoginActivity;
 import site.thewhale.memories.MainActivity;
 import site.thewhale.memories.R;
-import site.thewhale.memories.adapters.MainAdapter;
 import site.thewhale.memories.objects.User;
 
 public class ShareCodes {
     private static FirebaseAuth mAuth;
-
-    static FirebaseDatabase db = FirebaseDatabase.getInstance("https://memories-b188b-default-rtdb.firebaseio.com/");
-    static DatabaseReference dbr = db.getReference();
 
     public static void register(String email, String password, Activity activity, String name, String username) {
         mAuth = FirebaseAuth.getInstance();
@@ -66,10 +56,8 @@ public class ShareCodes {
                             user.updateProfile(profileUpdates);
 
                             //String username, String email, String name, String password
-                            User userObj = new User(username, email, name, password);
-                            dbr.child("users").push().setValue(userObj);
-                            Lists.createList("users");
-                            KtFunctionsKt.motionS(activity, "Done!", "Please confirm your email!");
+                            Lists.userArrayList.add(new User(user.getUid(), username, email, name, password));
+
                             FirebaseUser currentUser = mAuth.getCurrentUser();
                             if (currentUser != null) {
                                 FirebaseAuth.getInstance().signOut();
@@ -94,21 +82,7 @@ public class ShareCodes {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Query user = dbr.child("users").orderByChild("email").equalTo(email);
-                            user.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    for (DataSnapshot user : snapshot.getChildren()) {
-                                        User setUser = user.getValue(User.class);
-                                        Lists.currentUser = setUser;
-                                    }
-                                }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-
-                                }
-                            });
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Sign in", "signInWithEmail:success");
                             Intent i = new Intent(activity, MainActivity.class);
@@ -120,47 +94,13 @@ public class ShareCodes {
                             Toast.makeText(activity, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
+
+                        // ...
                     }
                 });
     }
 
-    public static void logOut(Activity activity) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle("Sign-out Confirmation");
-        builder.setMessage("Are you sure that you want to sign out?!");
-        builder.setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                FirebaseAuth.getInstance().signOut();
-                Intent i = new Intent(activity, LoginActivity.class);
-                activity.startActivity(i);
-                activity.finish();
-                KtFunctionsKt.motionS(activity, "Good Bye", "See you soon!ً");
-            }
-        });
-        builder.setNegativeButton("No :D", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(activity, "Have Fun!", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
-    public static void changeDetails(Activity activity) {
-        FirebaseAuth.getInstance().signOut();
-        Intent i = new Intent(activity, LoginActivity.class);
-        activity.startActivity(i);
-        activity.finish();
-        KtFunctionsKt.motionS(activity, "Done!", "Please re-loginً");
-    }
-    static MainAdapter adapterViewPager;
     public static com.mikepenz.materialdrawer.Drawer createDrawer(Activity activity) {
-        ViewPager vpPager = (ViewPager) activity.findViewById(R.id.mainViewPager);
-        adapterViewPager = new MainAdapter(((FragmentActivity)activity).getSupportFragmentManager());
-        vpPager.setAdapter(adapterViewPager);
         String name = "N/A";
         String email = "N/A";
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -200,6 +140,9 @@ public class ShareCodes {
                 .withActivity(activity)
                 .withAccountHeader(headerResult)
                 .withTranslucentStatusBar(false)
+
+//                .withDrawerGravity(Gravity.END)
+//                .withToolbar(toolbar)
                 .addDrawerItems(
                         item1,
                         item5,
@@ -211,18 +154,12 @@ public class ShareCodes {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        if (drawerItem.getIdentifier() == 1) {
-                            vpPager.setCurrentItem(0, true);
-                        } else if (drawerItem.getIdentifier() == 2) {
-
-                        } else if (drawerItem.getIdentifier() == 3) {
+                        if (drawerItem.getIdentifier() == 3) {
                             logOut(activity);
-                        } else if (drawerItem.getIdentifier() == 4) {
-                            vpPager.setCurrentItem(1, true);
-
-                        } else if (drawerItem.getIdentifier() == 5) {
-                            vpPager.setCurrentItem(2, true);
-
+                        } else if (drawerItem.getIdentifier() == 1) {
+                        }
+                        else if (drawerItem.getIdentifier() == 2) {
+                        } else if (drawerItem.getIdentifier() == 101) {
                         }
                         return false;
                     }
@@ -231,5 +168,28 @@ public class ShareCodes {
         return result;
     }
 
+    private static void logOut(Activity activity) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Sign-out Confirmation");
+        builder.setMessage("Are you sure that you want to sign out?!");
+        builder.setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(activity, LoginActivity.class);
+                activity.startActivity(i);
+                activity.finish();
+                KtFunctionsKt.motionI(activity, "Good Bye", "See you soon!ً");
+            }
+        });
+        builder.setNegativeButton("No :D", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(activity, "Have Fun!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 }
