@@ -35,9 +35,9 @@ public class MainFragment extends Fragment {
         Lists.createList("posts");
 
         RecyclerView rView = view.findViewById(R.id.mainPostRv);
-        rView.setHasFixedSize(true);
+        rView.setHasFixedSize(true);dw
         RecyclerView.LayoutManager lm = new LinearLayoutManager(view.getContext());
-        rView.setLayoutManager(lm);
+        rView.setLayoutManager(lm);d
 
         PostAdapter postAdapter = new PostAdapter(Lists.getPostArrayList(), view.getContext(), 0);
         rView.setAdapter(postAdapter);
