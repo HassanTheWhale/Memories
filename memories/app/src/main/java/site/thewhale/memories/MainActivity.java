@@ -12,6 +12,7 @@ import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialize.color.Material;
 
 import site.thewhale.memories.adapters.MainAdapter;
+import site.thewhale.memories.other.Lists;
 import site.thewhale.memories.other.ShareCodes;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setBackgroundDrawableResource(R.drawable.loading_bg);
+
+        Lists.createList("posts");
 
         ViewPager viewPager = findViewById(R.id.mainViewPager);
         TabLayout tl = findViewById(R.id.mainTab);

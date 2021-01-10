@@ -81,9 +81,7 @@ public class ProfileFragment extends Fragment {
                 filterUsers.add(post);
             }
         }
-
         postAdapter.filterList(filterUsers);
-
 
         Button edit = view.findViewById(R.id.profileEdit);
         edit.setOnClickListener(new View.OnClickListener() {

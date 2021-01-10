@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseDatabase db = FirebaseDatabase.getInstance("https://memories-b188b-default-rtdb.firebaseio.com/");
     DatabaseReference dbr = db.getReference();
 
+    @Override
     public void onStart() {
         super.onStart();
         Lists.createList("users");

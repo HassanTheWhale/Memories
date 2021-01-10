@@ -64,9 +64,8 @@ public class PostAdapter extends RecyclerView.Adapter {
         });
         ((ViewHolder) holder).comment.setText(postsList.get(position).getComment());
         ((ViewHolder) holder).username.setText(postsList.get(position).getUsername());
-        if (kind == 0) {
+//        if (kind == 0)
             ((ViewHolder) holder).delete.setVisibility(View.GONE);
-        }
     }
 
     @Override

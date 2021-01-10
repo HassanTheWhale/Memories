@@ -95,6 +95,7 @@ public class ShareCodes {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             Query user = dbr.child("users").orderByChild("email").equalTo(email);
                             user.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -110,11 +111,24 @@ public class ShareCodes {
 
                                 }
                             });
+
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("Sign in", "signInWithEmail:success");
                             Intent i = new Intent(activity, MainActivity.class);
                             activity.startActivity(i);
                             activity.finish();
+
+                            KtFunctionsKt.motionS(activity, "Welcome", "Have Fun!");
+
+//                            FirebaseUser usera = mAuth.getCurrentUser();
+//                            boolean emailVerified = usera.isEmailVerified();
+//                            if (emailVerified) {
+//
+//                            } else {
+//                                usera.sendEmailVerification();
+//                                Toast.makeText(activity, "You have to confirm your email first!",
+//                                        Toast.LENGTH_SHORT).show();
+//                            }
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("Sign in", "signInWithEmail:failure", task.getException());
@@ -151,11 +165,11 @@ public class ShareCodes {
     }
 
     public static void changeDetails(Activity activity) {
-        FirebaseAuth.getInstance().signOut();
-        Intent i = new Intent(activity, LoginActivity.class);
-        activity.startActivity(i);
-        activity.finish();
-        KtFunctionsKt.motionS(activity, "Done!", "Please re-loginً");
+//        FirebaseAuth.getInstance().signOut();
+//        Intent i = new Intent(activity, LoginActivity.class);
+//        activity.startActivity(i);
+//        activity.finish();
+//        KtFunctionsKt.motionS(activity, "Done!", "Please re-loginً");
     }
 
 

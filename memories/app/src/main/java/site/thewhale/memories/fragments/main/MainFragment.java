@@ -36,15 +36,13 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-
-        RecyclerView rView = view.findViewById(R.id.mainPostRv);
+        RecyclerView rView = view.findViewById(R.id.mainPostRv22);
         rView.setHasFixedSize(true);
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(view.getContext());
+        RecyclerView.LayoutManager lm = new LinearLayoutManager(getContext());
         rView.setLayoutManager(lm);
 
-        PostAdapter postAdapter = new PostAdapter(Lists.getPostArrayList(), view.getContext(), 0);
+        PostAdapter postAdapter = new PostAdapter(Lists.getPostArrayList(), getContext(), 0);
         rView.setAdapter(postAdapter);
-
 
         FloatingActionButton fab = view.findViewById(R.id.uploadPic);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +50,6 @@ public class MainFragment extends Fragment {
             public void onClick(View view) {
 //                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-
                 Intent i = new Intent(getActivity(), PostActivity.class);
                 startActivity(i);
             }
