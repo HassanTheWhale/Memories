@@ -4,26 +4,22 @@ import java.io.Serializable;
 
 public class Post implements Serializable {
     //attributes
-    private String ID;
     private String img;
     private String username;
     private int likes;
     private String comment;
 
-    public String getID() {
-        return ID;
-    }
 
-    public Post(String ID, String img, String username, int likes, String comment) {
-        this.ID = ID;
+
+    public Post(String img, String username, int likes, String comment) {
         this.img = img;
         this.username = username;
         this.likes = likes;
         this.comment = comment;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public Post() {
+
     }
 
     public String getImg() {

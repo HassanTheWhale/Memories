@@ -2,6 +2,7 @@ package site.thewhale.memories.adapters;
 
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,6 +29,8 @@ public class PostAdapter extends RecyclerView.Adapter {
     ArrayList<Post> postsList;
     Context contect;
     int kind = 0;
+    FirebaseStorage storage;
+    StorageReference storageReference;
 
     public PostAdapter(ArrayList<Post> postsList, Context contect, int kind) {
         this.postsList = postsList;
@@ -42,15 +49,23 @@ public class PostAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull  RecyclerView.ViewHolder holder, int position) {
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        storageReference.child("images2/"+postsList.get(position).getImg()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(contect).load(uri).into(((PostAdapter.ViewHolder) holder).img);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+        ((ViewHolder) holder).comment.setText(postsList.get(position).getComment());
+        ((ViewHolder) holder).username.setText(postsList.get(position).getUsername());
         if (kind == 0) {
-            Picasso.with(contect).load(postsList.get(position).getImg()).into(((ViewHolder) holder).img);
-            ((ViewHolder) holder).comment.setText(postsList.get(position).getComment());
-            ((ViewHolder) holder).username.setText(postsList.get(position).getUsername());
             ((ViewHolder) holder).delete.setVisibility(View.GONE);
-        } else if (kind == 1) {
-            Picasso.with(contect).load(postsList.get(position).getImg()).into(((ViewHolder) holder).img);
-            ((ViewHolder) holder).comment.setText(postsList.get(position).getComment());
-            ((ViewHolder) holder).username.setText(postsList.get(position).getUsername());
         }
     }
 

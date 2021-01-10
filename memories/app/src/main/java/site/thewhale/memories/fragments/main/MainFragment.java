@@ -1,5 +1,6 @@
 package site.thewhale.memories.fragments.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -16,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
+import site.thewhale.memories.PostActivity;
 import site.thewhale.memories.R;
 import site.thewhale.memories.adapters.PostAdapter;
 import site.thewhale.memories.objects.Post;
@@ -33,7 +36,6 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
-        Lists.createList("posts");
 
         RecyclerView rView = view.findViewById(R.id.mainPostRv);
         rView.setHasFixedSize(true);
@@ -43,21 +45,16 @@ public class MainFragment extends Fragment {
         PostAdapter postAdapter = new PostAdapter(Lists.getPostArrayList(), view.getContext(), 0);
         rView.setAdapter(postAdapter);
 
-        ArrayList<Post> filterUsers = new ArrayList<Post>();
-        for (Post post : Lists.getPostArrayList()) {
-            if (post.getUsername().equals(Lists.currentUser.getUsername())) {
-                filterUsers.add(post);
-            }
-        }
-
-        postAdapter.filterList(filterUsers);
 
         FloatingActionButton fab = view.findViewById(R.id.uploadPic);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+                Intent i = new Intent(getActivity(), PostActivity.class);
+                startActivity(i);
             }
         });
 

@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         Lists.createList("users");
+        Lists.createList("posts");
 
 //        mAuth = FirebaseAuth.getInstance();
 //        FirebaseUser currentUser = mAuth.getCurrentUser();

@@ -59,20 +59,18 @@ public class OtherProfileActivity extends AppCompatActivity {
 
         RecyclerView rView = findViewById(R.id.recyclerViewProfileOther);
         rView.setHasFixedSize(true);
-
-        RecyclerView.LayoutManager lm = new LinearLayoutManager(OtherProfileActivity.this);
+        RecyclerView.LayoutManager lm = new LinearLayoutManager(getApplicationContext());
         rView.setLayoutManager(lm);
 
-        PostAdapter postAdapter = new PostAdapter(Lists.getPostArrayList(), OtherProfileActivity.this, 0);
+        PostAdapter postAdapter = new PostAdapter(Lists.getPostArrayList(), getApplicationContext(), 0);
         rView.setAdapter(postAdapter);
 
-        ArrayList<Post> filterUsers = new ArrayList<Post>();
+        ArrayList<Post> filterPosts = new ArrayList<Post>();
         for (Post post : Lists.getPostArrayList()) {
             if (post.getUsername().equals(user.getUsername())) {
-                filterUsers.add(post);
+                filterPosts.add(post);
             }
         }
-
-        postAdapter.filterList(filterUsers);
+        postAdapter.filterList(filterPosts);
     }
 }

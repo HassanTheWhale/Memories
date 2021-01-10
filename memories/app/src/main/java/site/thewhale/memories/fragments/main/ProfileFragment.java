@@ -21,6 +21,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import site.thewhale.memories.EditActivity;
 import site.thewhale.memories.LoginActivity;
@@ -28,6 +30,7 @@ import site.thewhale.memories.MainActivity;
 import site.thewhale.memories.R;
 import site.thewhale.memories.ZeroPointActivity;
 import site.thewhale.memories.adapters.PostAdapter;
+import site.thewhale.memories.objects.Post;
 import site.thewhale.memories.other.Lists;
 
 public class ProfileFragment extends Fragment {
@@ -71,6 +74,16 @@ public class ProfileFragment extends Fragment {
 
         PostAdapter postAdapter = new PostAdapter(Lists.getPostArrayList(), view.getContext(), 1);
         rView.setAdapter(postAdapter);
+
+        ArrayList<Post> filterUsers = new ArrayList<Post>();
+        for (Post post : Lists.getPostArrayList()) {
+            if (post.getUsername().equals(Lists.currentUser.getUsername())) {
+                filterUsers.add(post);
+            }
+        }
+
+        postAdapter.filterList(filterUsers);
+
 
         Button edit = view.findViewById(R.id.profileEdit);
         edit.setOnClickListener(new View.OnClickListener() {
